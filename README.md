@@ -336,49 +336,47 @@ def search_locations(request):
 <p align=center>
 <img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story5.gif"  width="100%" height="100%" />
 </p>
-<br/>
+
 ##
 
 ### BeautifulSoup Setup
 
 &emsp;I incorporated BeautifulSoup to scrape mental health resources from an external website and display them within the app. To do this, I installed the necessary libraries and set up a Python script to send an HTTP request to the target website. Once I received the content, I wrote code to parse the HTML and extract relevant information, such as links to mental health support resources. I also created a dedicated “Resources” page to display this information, ensuring that users could access helpful resources directly from the app.
 ```python
-def search_locations(request):
-    search_by = request.GET.get('search_by', '').strip()
-    city_query = request.GET.get('city', '').strip()
-    state_query = request.GET.get('state', '').strip()
-    tags_query = request.GET.get('tags', '').strip()
+def Wellness_resources(request):
+    # Get the page content
+    try:
+        page = requests.get(
+            "https://health.ucdavis.edu/blog/cultivating-health/3-ways-getting-outside-into-nature-helps-improve-your-health/2023/05")
+        page.raise_for_status()  # Raises an error if the HTTP request fails (e.g., 404 or 500)
 
-    # Start with all wellness spots
-    spots = WellnessSpot.objects.all()
+    except requests.exceptions.RequestException as e:
+        # Handle potential request errors (e.g., connection issues, bad URLs)
+        return render(request, 'WellnessMap/error.html', {'error': str(e)})
 
-    # Apply search filters based on user input
-    if search_by == 'city' and city_query:
-        spots = spots.filter(city__icontains=city_query)
-    elif search_by == 'state' and state_query:
-        spots = spots.filter(state__iexact=state_query)
+    # Parse the content with BeautifulSoup
+    soup = BeautifulSoup(page.content, 'html.parser')
 
-    # Handle tag filtering
-    if tags_query:
-        selected_tags = tags_query.split(',')  # Split by commas if multiple tags are provided
-        selected_tags = [tag.strip() for tag in selected_tags]  # Clean up any extra spaces
-        spots = spots.filter(tags__name__in=selected_tags).annotate(tag_count=Count('tags')).filter(tag_count=len(selected_tags))
+    # Find the container that holds the content (adjust if needed)
+    container = soup.find('div', {'class': 'article-body sizer col-lg-10'})  # Modify if needed
 
-    # Prepare JSON response with lat/lng
-    spots_data = [
-        {
-            'id': spot.id, #important for linking to details page
-            'name': spot.street,
-            'lat': spot.lat,
-            'lng': spot.lng,
-            'address': spot.full_address,
-        }
-        for spot in spots if spot.lat and spot.lng
-    ]
+    if container:
+        # Find all <p> tags inside the container
+        paragraphs = container.find_all(['p', 'h2', 'li'])
+        # Convert the BeautifulSoup Tag objects to strings (raw HTML) before passing to the template
+        paragraphs_html = [str(p) for p in paragraphs]
+    else:
+        paragraphs_html = []
 
-    # Return as JSON response
-    return JsonResponse({'locations': spots_data})
+        # Prepare content to pass to the template
+    content = {
+        "paragraphs": paragraphs_html,
+    }
+
+    # Render the response with the content
+    return render(request, 'WellnessMap/WellnessMap_resources.html', content)
 ```
+
 ##
 
 ### Parse HTML
@@ -388,7 +386,7 @@ def search_locations(request):
 <p align=center>
 <img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story6.gif"  width="100%" height="100%" />
 </p>
-<br/>
+
 ##
 
 ### Front-End Improvements
@@ -445,7 +443,7 @@ def Wellness_favoriteSpots(request):
 <img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story8.gif"  width="100%" height="100%" />
 <img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story9.gif"  width="100%" height="100%" />
 </p>
-<br/>
+
 ##
 
 *Jump To: [Introduction](#introduction),  [Key Features & Functionality](#key-features--functionality), [Display All Items](#display-all-items), [Connect to API](#connect-to-api), [BeautifulSoup Setup](#beautifulsoup-setup), [Front-End Improvements](#front-end-improvements), [Conclusion](#conclusion), [Key Learnings & Challenges](#key-learnings--challenges)*
