@@ -1,4 +1,4 @@
-# Live Project
+# Python Live Project
 ## Introduction
 **Role:** Developer <br>
 **Tech Stack:** Python, Django, Google Maps API, BeautifulSoup, JavaScript, HTML/CSS <br>
