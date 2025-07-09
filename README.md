@@ -44,7 +44,7 @@
 &emsp;The first task involved laying the foundation of the app, including setting up the project and configuring Django. This initial setup was crucial for the entire application, requiring careful planning to ensure proper routing and views. I configured Django's settings.py and urls.py, then linked the app to the main Appbuilder9000 project homepage for easy access. I created base HTML templates (base.html and home.html) and added basic styling to ensure consistency in headers, footers, and content containers.
 
 <p align=center>
-<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story1.gif"  width="100%" height="100%" />
+<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story1.gif" />
 </p>
 <br/>
 
@@ -56,7 +56,7 @@ After confirming that the project was running smoothly, with all dependencies pr
 &emsp;In this stage, I focused on building the database model for wellness spots. I started by creating the "Add a Spot" HTML page, where users could submit a form containing fields for street, city, zip code, a state dropdown, description, a five-star rating system, and 12 pre-made, multi-selectable tags. Initially, I used checkboxes for tag selection and a dropdown for rating, but both elements appeared basic. Therefore, I enhanced the form by implementing a modern tag cloud for tag selection and radio buttons designed as stars for the rating system. I also ensured that the form was validated before submission.
 
 <p align=center>
-<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story2.gif"  width="100%" height="100%" />
+<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story2.gif" />
 </p>
 <br/>
 
@@ -94,7 +94,7 @@ class WellnessSpot(models.Model):
 &emsp;This story focused on displaying all saved wellness spots from the database. I created a new view, "Explore", that queried the database for wellness spots using Django’s ORM, enabling users to search by city, state, or tags. The results were passed to the template, which dynamically displayed wellness spot details such as address, description, rating, and tags. Before I added in the maps API funcionatlity, the search results were just shown in list format. Pagination was implemented to help users easily browse through multiple spots. After I added in the map (and thus, there was no need for the pagination necessarily), I added a new section on the explore page which listed all Wellness Spots in the database regardless of the search query further up on the page. This allowed me to keep my pagination code and apply it to the full database list for better user experience. I also included on the Explore page a reset search button, which cleared previous search results, and a search form to filter wellness spots based on user input.
 
 <p align=center>
-<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story3.png"  width="100%" height="100%" />
+<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story3.png" />
 </p>
 <br/>
 
@@ -236,7 +236,7 @@ function validateForm() {
 &emsp;In this phase, I added functionality to edit and delete wellness spots saved in the database. Users could update the description, tags, and rating of their favorite spots. To facilitate this, I created an "editSpot.js" script to update form elements based on the existing data. Additionally, I implemented a delete feature that allowed users to remove spots from the list. The delete action was confirmed through a popup alert, ensuring that users did not accidentally delete a wellness spot.
 
 <p align=center>
-<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story4.png"  width="100%" height="100%" />
+<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story4.png" />
 </p>
 <br/>
 
@@ -334,7 +334,7 @@ def search_locations(request):
 ```
 &emsp;The process required several iterations to ensure that the search results matched the selected filters and that the map markers were properly aligned with their corresponding spots. This task involved significant debugging to transition from hardcoded map coordinates to dynamically generated ones.
 <p align=center>
-<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story5.gif"  width="100%" height="100%" />
+<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story5.gif" />
 </p>
 
 ##
@@ -384,7 +384,7 @@ def Wellness_resources(request):
 &emsp;Using BeautifulSoup, I parsed the HTML structure of the target website to extract the necessary mental health information. The data included valuable resources such as links to support organizations and useful articles. By utilizing BeautifulSoup’s parsing methods, I was able to capture relevant data, process it, and display it in a user-friendly format within the app.
 
 <p align=center>
-<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story6.gif"  width="100%" height="100%" />
+<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story6.gif" />
 </p>
 
 ##
@@ -440,8 +440,8 @@ def Wellness_favoriteSpots(request):
 
 &emsp;While this feature was not fully completed during the sprint, I began working on a page where users could explore virtual nature spots if they were unable to visit wellness locations in person. I created a 3D model island containing various nature spots, each with clickable annotations leading to audiovisual YouTube videos of those nature spots. Although I could not complete the full vision within the sprint, I was able to lay the groundwork for an immersive experience that could later be expanded into a full virtual reality adventure.
 <p align=center>
-<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story8.gif"  width="100%" height="100%" />
-<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story9.gif"  width="100%" height="100%" />
+<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story8.gif" />
+<img src="https://github.com/Catherine-Condit/Live-Project-Python/blob/main/media/story9.gif" />
 </p>
 
 ##
